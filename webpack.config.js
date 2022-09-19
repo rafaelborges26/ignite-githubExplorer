@@ -7,13 +7,13 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 module.exports = {
     mode: isDevelopment ? 'development' : 'production',
     devtool: isDevelopment ? 'eval-source-map' : 'source-map', //tirar codigos estranhos do nosso codigo renderizado, mantendo apenas nosso codigo
-    entry: path.resolve(__dirname, 'src', 'index.jsx'), //usar o path para setar a barra correta de acordo com cada S.O src/index.jsc
+    entry: path.resolve(__dirname, 'src', 'index.tsx'), //usar o path para setar a barra correta de acordo com cada S.O src/index.jsc
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
     },
     resolve: {
-        extensions: ['.js', '.jsx'] //aceitará esses arquivos
+        extensions: ['.js', '.jsx', '.ts', '.tsx'] //aceitará esses arquivos
     },
     devServer: {
         static: path.resolve(__dirname, 'public'),
@@ -28,7 +28,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.jsx$/, //verificar se termina com .jsx
+                test: /\.(j|t)sx$/, //verificar se termina com .jsx
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
